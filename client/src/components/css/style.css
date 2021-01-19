@@ -1,0 +1,70 @@
+.sidebar {
+    flex: 0.3;
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.sidebar-menu {
+    margin: 5px;
+    font-size: 30px;
+    color: #000 !important;
+}
+
+.sidebar-menu:hover {
+    color: aqua !important;
+}
+
+.dashboard-sidebar {
+    border-right: 1px solid #ddd;
+}
+
+.feed {
+    flex: 0.4;
+    border-right: 1px solid #dddddd;
+    min-width: fit-content;
+    overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.feed::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.feed {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.feed__header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+    border: 1px solid ddd;
+    padding: 15px 20px;
+}
+
+.feed__header > h2 {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.image-top {
+    height: 50px !important;
+    width: 50px !important;
+}
+.image-top img{
+    height: 50px !important;
+    width: 50px !important;
+}
+.like-icon {
+    background: transparent;
+    color: #000000;
+}
+.dashboard-feed{
+    border: none;
+}
+
+
