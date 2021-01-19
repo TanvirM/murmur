@@ -9,22 +9,25 @@ import {AuthContext} from "../../contexts/AuthContext";
 
 function Feed() {
     const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
-    const {userData} = useContext(AuthContext)
+    const {userData, updateMurmurData} = useContext(AuthContext)
 
     useEffect(() => {
-        const fetchPosts = async () => {
-            setLoading(true);
-            const res = await axios.post('http://localhost:3000/api/murmurs/', {
-                'user_id': 1
-            });
-            setPosts(res.data);
-            setLoading(false);
-        };
+        if (loading) {
+            const fetchPosts = async () => {
+                const res = await axios.post('http://localhost:3000/api/murmurs/', {
+                    'user_id': 1
+                });
+                setPosts(res.data);
+                updateMurmurData(res.data);
+                setLoading(false);
+            };
 
-        fetchPosts();
+            fetchPosts();
+        }
+
     }, []);
 
     // Get current posts

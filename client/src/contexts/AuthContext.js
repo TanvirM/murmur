@@ -2,9 +2,11 @@ import React, {useContext, useState, useEffect, useReducer} from "react"
 import {auth} from "../firebase"
 import AppReducer from "./AppReducer";
 
+const localUserData = localStorage.getItem('m_user')
 const initialState = {
-    userData: {},
-    follower : {}
+    userData: localUserData?JSON.parse(localUserData):{},
+    follower : {},
+    murmurData : []
 }
 export const AuthContext = React.createContext(initialState)
 
@@ -61,6 +63,12 @@ export function AuthProvider({children}) {
             payload: data
         });
     }
+    function updateMurmurData(data) {
+        dispatch({
+            type: 'UPDATE_MURMUR_DATA',
+            payload: data
+        });
+    }
 
 
     useEffect(() => {
@@ -85,7 +93,10 @@ export function AuthProvider({children}) {
         updateUserData,
         userData: state.userData,
         updateFollowerData,
-        follower: state.follower
+        follower: state.follower,
+        updateMurmurData,
+        murmurData: state.murmurData
+
     }
 
     return (

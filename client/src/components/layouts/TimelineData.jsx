@@ -10,8 +10,9 @@ const Posts = ({posts, loading}) => {
     const [like, setLike] = useState(false);
     const [canDelete, setDelete] = useState(true);
     const history = useHistory();
-    const {updateFollowerData} = useContext(AuthContext)
-
+    const {updateFollowerData, murmurData} = useContext(AuthContext)
+    console.log("postData " , posts)
+    console.log("murmur_data " , murmurData)
     if (loading) {
         return <h2>Loading...</h2>;
     }
@@ -23,7 +24,6 @@ const Posts = ({posts, loading}) => {
             "user_id": user_id,
             "murmur_id": murmur_id
         }).then(function (res) {
-            console.log(res);
         });
 
     }
@@ -35,7 +35,6 @@ const Posts = ({posts, loading}) => {
             "user_id": user_id,
             "murmur_id": murmur_id
         }).then(function (res) {
-            console.log(res);
         });
     }
 
@@ -45,7 +44,7 @@ const Posts = ({posts, loading}) => {
     }
 
     return (
-        <div>{posts.map(post => (
+        <div>{murmurData.map(post => (
             <div key={"post-" + post.id}>
                 <div className="row">
                     <div className="col-md-11">

@@ -10,6 +10,11 @@ export default (state, action) => {
                 ...state,
                 follower: action.payload
             };
+        case 'UPDATE_MURMUR_DATA':
+            return {
+                ...state,
+                murmurData: action.payload
+            };
         default: return state;
     }
 }

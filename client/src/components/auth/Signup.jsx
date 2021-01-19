@@ -1,6 +1,6 @@
-import React, {useRef, useState} from "react"
+import React, {useContext, useRef, useState} from "react"
 import {Form, Button, Card, Alert} from "react-bootstrap"
-import {useAuth} from "../../contexts/AuthContext"
+import {AuthContext, useAuth} from "../../contexts/AuthContext"
 import {Link, useHistory} from "react-router-dom"
 import axios from "axios";
 
@@ -12,6 +12,7 @@ export default function Signup() {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const history = useHistory()
+    const {updateUserData} = useContext(AuthContext)
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -29,8 +30,7 @@ export default function Signup() {
                 'email': emailRef.current.value,
                 'password': passwordRef.current.value,
             }).then(function (res) {
-                console.log(res.data.row[0]);
-                userId(res.data.row[0])
+                updateUserData(res.data.row[0])
             });
             history.push("/")
 

@@ -5,7 +5,7 @@ import axios from "axios";
 import {AuthContext} from "../../contexts/AuthContext";
 
 function Feed() {
-    const {userData} = useContext(AuthContext)
+    const {userData, updateMurmurData, murmurData} = useContext(AuthContext)
     const [isLoading, setLoading] = useState(false);
     const [post, setPost] = useState()
 
@@ -27,11 +27,14 @@ function Feed() {
     }
     const handleClick = async () => {
         setLoading(true)
-        const res = await axios.post('http://localhost:3000/api/murmur/create/', {
+        await axios.post('http://localhost:3000/api/murmur/create/', {
             'user_id': userData.id,
             'post_data': post,
         }).then(function (res) {
-            console.log(res);
+            let data = res.data[0];
+            let res_data = {...data, 'wonlikes': null, 'name': userData.name }
+            let murmur = [res_data, ...murmurData]
+            updateMurmurData(murmur)
         });
     };
 
